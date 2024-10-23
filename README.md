@@ -1,70 +1,93 @@
-# Getting Started with Create React App
+# Project Setup Guide
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+This guide will help you set up the project on your local machine to get it running.
 
-## Available Scripts
+## Prerequisites
 
-In the project directory, you can run:
+Before starting, ensure you have the following installed:
 
-### `npm start`
+- [Node.js](https://nodejs.org/) (v14 or higher)
+- [MongoDB](https://www.mongodb.com/)
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Frontend Setup (React)
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+1. Clone the repository and navigate to the project directory:
 
-### `npm test`
+   ```bash
+   git clone <repository-url>
+   cd frontend
+   ```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+2. Install the necessary dependencies:
 
-### `npm run build`
+   ```bash
+     npm install
+   ```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+3. Create a .env file in the root of the frontend directory and add the following environment variable:
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+   ```bash
+   REACT_APP_BACKEND_URL=http://localhost:5000
+   ```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+4. Start the React frontend:
+   ```bash
+   npm start
+   ```
 
-### `npm run eject`
+---
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Backend Setup (Node.js + Express)
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+1. Open a new terminal, navigate to the backend directory:
+   ```bash
+   cd backend
+   ```
+2. Install the backend dependencies:
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+   ```bash
+   npm install
+   ```
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+3. Create a .env file in the backend directory and add the following environment variables:
 
-## Learn More
+   ```bash
+     MONGO_URI=your_mongo_uri
+    PORT=5000
+    JWT_SECRET=your_jwt_secret_key
+    SuperAdmin_EMAIL=your_email_address
+    EMAIL_USER="your_email_address"
+    EMAIL_PASS=your_mail_app_password
+   ```
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Explanation of Environment Variables:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+- MONGO_URI: This is the connection string to your MongoDB database.
+  PORT: The port on which the backend will run (in this case, 5000).
+- JWT_SECRET: A secret key used to sign JSON Web Tokens (JWT) for authentication.
+- SuperAdmin_EMAIL: This is the email address of the SuperAdmin. When an admin signs up, the SuperAdmin will receive an OTP via email to verify the signup process.
+- EMAIL_USER: The email address from which emails (such as OTPs) will be sent.
+- EMAIL_PASS: The mail app password or SMTP password for sending emails through the email address.
 
-### Code Splitting
+These email-related environment variables are necessary because the application needs to send OTPs to the admin for verification. The SuperAdmin email ensures that only the designated person can verify new admin accounts.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+4. Start the backend server:
+   ```bash
+    npm start
+   ```
+5. The backend will be running on http://localhost:5000.
 
-### Analyzing the Bundle Size
+### Running the Application
+Now that both the frontend and backend are running:
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+- Open http://localhost:3000 in your browser to access the application.
 
-### Making a Progressive Web App
+- Make sure the backend is running on http://localhost:5000 for proper API communication.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### Additional Information
+- The application uses JWT for authentication. Ensure that the JWT_SECRET in the backend's .env is secure.
+- For email functionality, ensure that you have created an app-specific password (or similar) for your email provider (e.g., Gmail).
 
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+### Troubleshooting
+- If the frontend or backend doesn't start, ensure that you have correctly set up the .env files and installed all dependencies.
+- If you encounter any issues with MongoDB, verify your MONGO_URI and ensure MongoDB is running on your machine or in the cloud.
