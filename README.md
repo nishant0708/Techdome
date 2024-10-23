@@ -78,6 +78,7 @@ These email-related environment variables are necessary because the application 
 5. The backend will be running on http://localhost:5000.
 
 ### Running the Application
+
 Now that both the frontend and backend are running:
 
 - Open http://localhost:3000 in your browser to access the application.
@@ -85,9 +86,11 @@ Now that both the frontend and backend are running:
 - Make sure the backend is running on http://localhost:5000 for proper API communication.
 
 ### Additional Information
+
 - The application uses JWT for authentication. Ensure that the JWT_SECRET in the backend's .env is secure.
 - For email functionality, ensure that you have created an app-specific password (or similar) for your email provider (e.g., Gmail).
 
 ### Troubleshooting
+
 - If the frontend or backend doesn't start, ensure that you have correctly set up the .env files and installed all dependencies.
 - If you encounter any issues with MongoDB, verify your MONGO_URI and ensure MongoDB is running on your machine or in the cloud.
